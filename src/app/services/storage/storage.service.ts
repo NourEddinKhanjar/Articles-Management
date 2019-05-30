@@ -1,4 +1,5 @@
 import {Injectable} from '@angular/core';
+
 import {StorageKeyType} from '@models/storage/storage-keys';
 import {EnumUtil} from '@utils/enum/enum.util';
 
@@ -13,11 +14,7 @@ export class StorageService {
   get<T>(key: StorageKeyType): T {
     const keyAsString: string = EnumUtil.getEnumKeyStringValue(StorageKeyType, key);
     const item: string = localStorage.getItem(keyAsString);
-    if (item) {
-      return <T>JSON.parse(item);
-    }
-    console.warn(`Trying to get not existed item from local storage: key is: ${keyAsString}`);
-    return null;
+    return item ? <T>JSON.parse(item) : null;
   }
 
   set<T>(key: StorageKeyType, data: T): void {

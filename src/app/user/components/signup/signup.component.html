@@ -1,0 +1,19 @@
+<div class="signup-page">
+  <div class="form">
+    <form class="signup-form">
+
+      <input [(ngModel)]="user.firstName" name="first_name" type="text"       placeholder="First Name" required/>
+      <input [(ngModel)]="user.lastName"  name="last_name"  type="text"       placeholder="Last Name" required/>
+      <input [(ngModel)]="user.email"     name="email"      type="email"      placeholder="email" required/>
+      <input [(ngModel)]="user.password"  name="password"   type="password"   placeholder="password" required/>
+
+      <button (click)="signup()">Signup</button>
+
+      <p class="message">
+        Already registered?
+        <a routerLink="/user/login">Login to your account</a>
+      </p>
+
+    </form>
+  </div>
+</div>
