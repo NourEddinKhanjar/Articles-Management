@@ -27,6 +27,10 @@ export class UserService {
     this.setSignedUser(user);
   }
 
+  public validLoginUser(user: IUser): boolean{
+    return this.isExistedUser(user.email) && this.userNameMatchesPassword(user);
+  }
+
   private initUsers(): void {
     const storedUsers: IUser[] = this.getUsersFromStorage();
     storedUsers.forEach((user: IUser) => {
@@ -44,5 +48,10 @@ export class UserService {
 
   private setSignedUser(user: IUser): void {
     this.storageService.set<IUser>(StorageKeyType.User, user);
+  }
+
+  private userNameMatchesPassword(user: IUser): boolean{
+    const storedUser: IUser = this.users.get(user.email);
+    return storedUser.password === user.password;
   }
 }

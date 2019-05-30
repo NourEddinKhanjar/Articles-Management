@@ -1,9 +1,9 @@
 <div class="login-page">
   <div class="form">
     <form class="login-form">
-      <input type="email" placeholder="email" required/>
-      <input type="password" placeholder="password" required/>
-      <button>login</button>
+      <input type="email"     [(ngModel)]="user.email"    name="email"    placeholder="email" required/>
+      <input type="password"  [(ngModel)]="user.password" name="password" placeholder="password" required/>
+      <button (click)="login()">login</button>
       <p class="message">
         Not registered?
         <a routerLink="/user/signup">Create an account</a>
