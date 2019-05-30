@@ -17,6 +17,17 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "@models/*": ["src/app/models/*"],
+      "@services/*": ["src/app/services/*"],
+      "@utils/*": ["src/app/utils/*"],
+      "@userModels/*": ["src/app/user/models/*"],
+      "@userServices/*": ["src/app/user/services/*"],
+      "@userComponents/*": ["src/app/user/components/*"],
+      "@articlesModels/*": ["src/app/articles/models/*"],
+      "@articlesServices/*": ["src/app/articles/services/*"],
+      "@articlesComponents/*": ["src/app/articles/components/*"]
+    }
   }
 }
