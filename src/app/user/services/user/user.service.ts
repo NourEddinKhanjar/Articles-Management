@@ -1,14 +1,15 @@
 import {Injectable} from '@angular/core';
 import {StorageService} from '@services/storage/storage.service';
-import {IUser} from '@userModels/user/user.model';
 import {StorageKeyType} from '@models/storage/storage-keys';
+import {IUser} from '@models/user/user.model';
+import {SignedUserService} from '@services/signed-user/signed-user.service';
 
 @Injectable()
 export class UserService {
 
   private users: Map<string, IUser>;
 
-  constructor(private storageService: StorageService) {
+  constructor(private storageService: StorageService, private signedUserService: SignedUserService) {
     this.users = new Map();
     this.initUsers();
   }
@@ -20,11 +21,11 @@ export class UserService {
   public addUser(user: IUser): void {
     this.users.set(user.email, user);
     this.setUsersToStorage();
-    this.setSignedUser(user);
+    this.signedUserService.setSignedUser(user);
   }
 
   public login(user: IUser): void{
-    this.setSignedUser(user);
+    this.signedUserService.setSignedUser(user);
   }
 
   public validLoginUser(user: IUser): boolean{
@@ -44,10 +45,6 @@ export class UserService {
 
   private setUsersToStorage(): void {
     this.storageService.set<IUser[]>(StorageKeyType.Users, Array.from(this.users.values()));
-  }
-
-  private setSignedUser(user: IUser): void {
-    this.storageService.set<IUser>(StorageKeyType.User, user);
   }
 
   private userNameMatchesPassword(user: IUser): boolean{

@@ -1,3 +1,5 @@
+import {IUser} from '@models/user/user.model';
+
 export class User implements IUser{
   email: string;
   firstName: string;
@@ -14,12 +16,5 @@ export class User implements IUser{
   static create(){
     return new User();
   }
-}
-
-export interface IUser {
-  firstName: string;
-  lastName: string;
-  email: string;
-  password: string;
 }
 

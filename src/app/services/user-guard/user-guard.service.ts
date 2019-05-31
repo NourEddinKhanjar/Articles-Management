@@ -1,19 +1,18 @@
 import { Injectable } from '@angular/core';
 import {Route, Router} from '@angular/router';
 
-import {StorageService} from '@services/storage/storage.service';
-import {StorageKeyType} from '@models/storage/storage-keys';
+import {SignedUserService} from '@services/signed-user/signed-user.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserGuardService {
 
-  constructor(private router: Router, private storageService: StorageService) {
+  constructor(private router: Router, private signedUserService: SignedUserService) {
   }
 
   canLoad(route: Route): boolean {
-    const unAuthenticatedUser: boolean = this.storageService.get(StorageKeyType.User) == null;
+    const unAuthenticatedUser: boolean =  this.signedUserService.getSignedUser() == null;
     if (!unAuthenticatedUser) {
       this.router.navigate(['/articles']);
     }
