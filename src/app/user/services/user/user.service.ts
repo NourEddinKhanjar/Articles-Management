@@ -7,7 +7,7 @@ import {SignedUserService} from '@services/signed-user/signed-user.service';
 @Injectable()
 export class UserService {
 
-  private users: Map<string, IUser>;
+  private readonly users: Map<string, IUser>;
 
   constructor(private storageService: StorageService, private signedUserService: SignedUserService) {
     this.users = new Map();
@@ -25,7 +25,8 @@ export class UserService {
   }
 
   public login(user: IUser): void{
-    this.signedUserService.setSignedUser(user);
+    let fullUser: IUser = this.users.get(user.email);
+    this.signedUserService.setSignedUser(fullUser);
   }
 
   public validLoginUser(user: IUser): boolean{

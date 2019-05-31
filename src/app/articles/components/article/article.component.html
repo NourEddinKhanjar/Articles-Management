@@ -1,0 +1,11 @@
+<div class="article-page">
+  <div class="form">
+    <form class="article-form">
+      <input type="text" placeholder="Title"    name="title"   [(ngModel)]="article.title" required>
+      <textarea rows="3" placeholder="Content"  name="content" [(ngModel)]="article.content" required></textarea>
+      <input type="date" placeholder="Date"     name="date"    [(ngModel)]="article.date" required>
+      <input type="file" placeholder="Image"    name="image"   [(ngModel)]="article.image" required>
+      <button (click)="add()">Add/Update</button>
+    </form>
+  </div>
+</div>

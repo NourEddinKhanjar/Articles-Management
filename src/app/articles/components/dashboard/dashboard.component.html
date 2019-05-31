@@ -1,0 +1,47 @@
+<div class="container articles-container">
+  <div class="row  mb-5 mt-5 w-100 user-info-header">
+    <div class="col-12">
+      <app-header></app-header>
+    </div>
+  </div>
+
+  <div class="row mb-5 w-100 articles-table">
+    <div class="col-12">
+      <table class="table-striped table-responsive">
+        <thead class="w-100">
+        <tr class="w-100">
+          <th>#</th>
+          <th>Title</th>
+          <th>Content</th>
+          <th>Date</th>
+          <th>Image</th>
+          <th>Edit</th>
+          <th>Delete</th>
+        </tr>
+        </thead>
+        <tbody class="w-100">
+        <tr *ngFor="let article of articles" class="w-100">
+          <td>{{article.id}}</td>
+          <td>{{article.title}}</td>
+          <td>{{article.content}}</td>
+          <td>{{article.date}}</td>
+          <td><img [src]="getArticleImagePath(article)" [alt]="article.title"></td>
+          <td>
+            <button type="button" class="btn btn-sm btn-primary" (click)="editArticle(article)">Edit</button>
+          </td>
+          <td>
+            <button type="button" class="btn btn-sm btn-danger" (click)="deleteArticle(article)">Delete</button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12">
+      <button type="button" class="btn btn-sm btn-info" (click)="addArticle()">Add Article</button>
+    </div>
+  </div>
+
+</div>

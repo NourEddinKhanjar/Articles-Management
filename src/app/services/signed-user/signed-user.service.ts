@@ -15,6 +15,10 @@ export class SignedUserService {
     return this.storageService.get<IUser>(StorageKeyType.User);
   }
 
+  public logout(){
+    this.setSignedUser(null);
+  }
+
   public setSignedUser(user: IUser): void{
     this.storageService.set<IUser>(StorageKeyType.User, user);
   }
